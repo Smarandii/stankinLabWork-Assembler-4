@@ -1,0 +1,17 @@
+%macro putmouse 2
+	mov ah,02h
+	mov bh, 0
+	mov dh, %1	
+	mov dl, %2	
+	int 10h  	
+%endmacro
+
+%macro drawrectangle 4
+	mov ah,13h
+	mov al, 0  	; формат строки в памяти (0 – только из символов в ячейках памяти)
+	mov cx, %3  	; длина строки LENGHT
+	mov bl, %4 	; COLOR
+	mov dh, %2	; строка на экране 0 - 23 Y
+	mov dl, %1	; столбец на экране 0 - 79 X
+	int 10h     ; вывести цветную строку в позицию курсора без перемещения курсора
+%endmacro
